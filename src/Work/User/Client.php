@@ -312,4 +312,18 @@ class Client extends BaseClient
             'userid_list' => $user_ids
         ]);
     }
+
+    /**
+     * Get user id list
+     *
+     * @param string $cursor
+     * @param int $limit
+     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listId(string $cursor, int $limit = 10000)
+    {
+        return $this->httpGet('cgi-bin/user/list_id', ['cursor' => $cursor, 'limit' => $limit]);
+    }
 }
